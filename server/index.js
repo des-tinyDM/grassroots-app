@@ -36,6 +36,8 @@ const port = process.env.PORT || 3001;
 
 const app = express();
 
+app.use(express.static(`${__dirname}/../build`));
+
 massive(process.env.CONNECTION_STRING)
   .then(db => app.set("db", db))
   .catch(err => console.log(err));
@@ -121,6 +123,11 @@ app.post(`/api/campaign/submit_contact/`, submitContact);
 app.get(`/api/campaigns/data/:campaign_id/:type`, getCommsData);
 
 // app.put(`/api/campaign/:id`, updateCampaignInfo);
+
+const path = require("path");
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/../build/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Comin' at you from ${port}`);
