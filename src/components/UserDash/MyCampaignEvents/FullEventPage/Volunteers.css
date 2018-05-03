@@ -1,0 +1,10 @@
+.vol-info-redux {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  border: 1px solid black;
+  margin: 1vh 2vw;
+  line-height: 5px;
+  font-size: 12px;
+}

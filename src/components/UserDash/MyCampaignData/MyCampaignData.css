@@ -1,0 +1,16 @@
+.d3-graphs {
+  height: 600px;
+  width: 600px;
+  background-color: skyblue;
+  border-radius: 4px;
+  box-shadow: 4px 4px #888888;
+  border: 1px grooced black;
+}
+
+.campaign-data-container {
+  border: 1px solid lightsalmon;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: block;
+}

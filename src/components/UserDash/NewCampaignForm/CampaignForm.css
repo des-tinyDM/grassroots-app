@@ -1,0 +1,11 @@
+.campaign-form {
+  display: flex;
+  flex-direction: column;
+  /* width: 40vw; */
+  align-items: center;
+  justify-content: space-between;
+  border: 2px groove salmon;
+}
+.scope {
+  width: 20vw;
+}

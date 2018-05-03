@@ -1,0 +1,19 @@
+.event {
+  border: 2px solid black;
+  border-radius: 7px;
+  margin: 5vh 4vw;
+  height: 40vh;
+  width: 80wv;
+}
+.scheduled-events-card {
+  border: 2px solid black;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 5vw;
+}
+
+.full-event {
+  display: flex;
+  flex-direction: column;
+}

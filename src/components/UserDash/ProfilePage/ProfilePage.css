@@ -1,0 +1,23 @@
+.info-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60vw;
+}
+.info {
+  margin: 20px;
+}
+.profile-img {
+  height: 200px;
+  width: 200px;
+  align-self: flex-start;
+}
+
+.profile {
+  width: 80vw;
+  display: flex;
+}
+
+.info {
+  line-height: 20px;
+}

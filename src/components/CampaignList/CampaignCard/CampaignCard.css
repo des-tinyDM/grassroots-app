@@ -1,0 +1,21 @@
+.campaign-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px dotted blue;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin: 5vh auto;
+}
+.join-campaign {
+  height: 40px;
+  width: 5vw;
+}
+
+.orglogo {
+  max-width: 20vw;
+}
+
+.campaign-card > p {
+  width: 50vw;
+}

@@ -1,0 +1,1 @@
+Select event_name as title, * from events where campaign_id = $1;

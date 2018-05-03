@@ -1,0 +1,15 @@
+.my-campaign-card {
+  box-shadow: 6px 6px 2px lightgrey;
+  border: 1px solid grey;
+  padding: 5vw;
+  margin: 5vh 5vw;
+}
+
+.user-campaign-dash {
+  display: flex;
+  align-items: center;
+  margin: 5vh 5vw;
+  padding: 2vh 2vw;
+  border: 1px solid grey;
+  box-shadow: 6px 6px 2px lightgrey;
+}

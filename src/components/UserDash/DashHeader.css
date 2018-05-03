@@ -1,0 +1,80 @@
+.dash-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
+  width: 15vw;
+  min-width: 200px;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+  border-right: 1px solid black;
+
+  background: #323f5f;
+}
+
+.dash-nav:active {
+  border-bottom: 2px solid white;
+}
+
+.dash-nav-text {
+  color: white;
+  font-size: 216x;
+  width: 70%;
+  text-align: left;
+}
+
+.dash-nav {
+  margin-left: 1vw;
+  text-decoration: none;
+  /** Offset the Position **/
+  position: relative;
+  top: 0;
+  /* margin-bottom: 10px; */
+  /** 3D Block Effect **/
+
+  /** Make it look pretty **/
+  color: #eee;
+  cursor: pointer;
+  opacity: 0.9;
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 3em;
+}
+
+.dash-nav:active {
+  /** Remove 3D Block Effect on Click **/
+  box-shadow: none;
+  top: 10px;
+  margin-bottom: 0;
+  background: #323f5f;
+  color: white;
+}
+
+.dash-nav:hover {
+  opacity: 1;
+  background: #1a77f5;
+  color: white;
+}
+
+.dash-nav:active,
+.dash-nav:focus {
+  /** Remove Chrome's Ugly Yellow Outline **/
+  outline: 0;
+  background: #323f5f;
+  color: white;
+}
+
+.dash-nav-top {
+  margin-top: 10vh;
+}
+.sign-out-div {
+  height: 60%;
+  display: flex;
+  align-items: flex-end;
+}
+#logout-btn {
+  width: 100%;
+}

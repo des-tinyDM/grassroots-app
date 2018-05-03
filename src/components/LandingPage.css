@@ -1,0 +1,63 @@
+#landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  /* height: 70vh; */
+}
+
+.content-container {
+  height: 80vh;
+  width: 100%;
+  margin: 1vh 0;
+  position: absolute;
+  /* left: 10vw; */
+  /* background-image: url("./heroImage.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; */
+  /* border: 2px solid black; */
+}
+
+.desc-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1vh 2vw;
+
+  /* background: rgb(170, 187, 97); 
+  background: rgba(170, 187, 97, 0.5); */
+}
+#landing-btn {
+  font-size: 30px;
+  border-radius: 7px;
+  width: 500px;
+  padding: 15px;
+  color: white;
+  background-color: #579f3d;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #999;
+}
+#landing-btn:hover {
+  background-color: #3e8e41;
+}
+
+#landing-btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.desc-box {
+  margin: 0 2vw;
+  padding: 1vh 0;
+  width: 20vw;
+  background: transparent;
+  font-family: "Ubuntu", sans-serif;
+}
+#hero-img {
+  max-height: 33vh;
+  margin: 1vh 0;
+}

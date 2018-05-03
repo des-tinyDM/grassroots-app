@@ -1,0 +1,4 @@
+.Campaign-dash {
+  display: flex;
+  flex-direction: column;
+}
