@@ -8,6 +8,8 @@ import moment from "moment";
 import ScheduledEvents from "./ScheduledEventCard";
 import MyCalendar from "./Calandar";
 import EventCreator from "./EventCreator";
+import { withRouter } from "react-router-dom";
+import "./MyCampaignEvents.css";
 
 class MyCampaignEvents extends Component {
   constructor(props) {
@@ -23,7 +25,8 @@ class MyCampaignEvents extends Component {
       eventAddress: "",
       eventCity: "",
       eventState: "",
-      eventZip: null
+      eventZip: null,
+      showCalendar: false
     };
     this.handleEventName = this.handleEventName.bind(this);
     this.handleEventType = this.handleEventType.bind(this);
@@ -88,24 +91,6 @@ class MyCampaignEvents extends Component {
       : null;
   }
   render() {
-    // let starting = e.date_start
-    //   .split("-")
-    //   .map((e, i, arr) => (i === arr.length - 1 ? e.substring(0, 2) : e))
-    //   .join(",");
-    // {
-    //   console.log(starting);
-    // }
-
-    // const eventsToCal = Object.keys(this.props.events).reduce(function(
-    //   prev,
-    //   curr
-    // ) {
-    //   previous[curr.data_start] = `new Date(${starting})`;
-    //   return previous;
-    // });
-
-    // console.log(eventsToCal);
-
     let eventsMapped = this.props.events.map((e, i) => {
       moment.locale();
       let sday = moment(e.start, "YYYY-MM-DD HH:mm:ss").format("LLL");
@@ -134,18 +119,28 @@ class MyCampaignEvents extends Component {
       );
     });
 
+    let calendarTimeObj = this.props.events.map((e, i) => {
+      let startDT = new Date(`${e.start}`);
+      let endDT = new Date(`${e.end}`);
+      e.start = startDT;
+      e.end = endDT;
+
+      console.log(`START`, startDT);
+
+      // console.log(`new Date(${forCalendar})`);
+      console.log(e);
+    });
+
     console.log(`this is important`, this.props.events);
 
     return (
-      <div>
-        <MyCalendar events={this.props.events} />
-
-        <h1>Upcoming Events</h1>
-        {this.props.joined[0] &&
-          this.props.joined[0].role === "Admin" && (
-            <button onClick={e => this.handleCreate(e)}>Add an Event</button>
-          )}
-
+      <div className="campaign-events">
+        <div className="create-event-btn">
+          {this.props.joined[0] &&
+            this.props.joined[0].role === "Admin" && (
+              <button onClick={e => this.handleCreate(e)}>Add an Event</button>
+            )}
+        </div>
         {this.state.isCreating ? (
           <div>
             <EventCreator campaign_id={this.props.joined[0].campaign_id} />
@@ -167,11 +162,15 @@ class MyCampaignEvents extends Component {
         {!this.props.events.length ? (
           <h1>No Events Scheduled at this time.</h1>
         ) : (
-          <div>
+          <div className="grid-container">
             <h1>Events:</h1>
-            {eventsMapped}
+            <div className="grid-item">{eventsMapped}</div>
           </div>
         )}
+
+        <div className="MyCalendar">
+          <MyCalendar events={this.props.events} />
+        </div>
       </div>
     );
   }
@@ -182,7 +181,9 @@ const mapStateToProps = state => {
     scheduled: state.campaignReducer.scheduled
   };
 };
-export default connect(mapStateToProps, {
-  getEvents,
-  scheduleUserAsVol
-})(MyCampaignEvents);
+export default withRouter(
+  connect(mapStateToProps, {
+    getEvents,
+    scheduleUserAsVol
+  })(MyCampaignEvents)
+);

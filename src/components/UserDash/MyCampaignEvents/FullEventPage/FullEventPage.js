@@ -35,10 +35,10 @@ class FullEventPage extends Component {
     );
     let event = this.props.events[index];
 
-    let sday = moment(event.date_start).format("MMM Do, YYYY");
-    let stime = moment(event.time_start, "HH:mm:ss").format("LT");
-    let eday = moment(event.date_end).format("MMM Do, YYYY");
-    let etime = moment(event.time_end, "HH:mm:ss").format("LT");
+    let sday = moment(event.start).format("MMM Do, YYYY");
+    let stime = moment(event.start, "HH:mm:ss").format("LT");
+    let eday = moment(event.end).format("MMM Do, YYYY");
+    let etime = moment(event.end, "HH:mm:ss").format("LT");
 
     let searchProp = this.state.searchProp;
     let searchStr = this.state.searchStr;

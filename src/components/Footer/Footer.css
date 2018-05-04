@@ -35,3 +35,15 @@
   margin: 1vh 3vw;
   overflow-x: scroll;
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  #logo-display {
+    flex-direction: column;
+    height: 300px;
+  }
+  .logo-display-img {
+    /* max-height: 20vh;
+    min-width: 30vw; */
+    overflow-y: scroll;
+  }
+}

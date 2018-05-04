@@ -2,14 +2,15 @@
   border: 2px solid black;
   border-radius: 7px;
   margin: 5vh 4vw;
-  height: 40vh;
-  width: 80wv;
+  height: 20vh;
+  width: 70vw;
 }
 .scheduled-events-card {
   border: 2px solid black;
   border-radius: 7px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin: 2vh 5vw;
 }
 
@@ -17,3 +18,10 @@
   display: flex;
   flex-direction: column;
 }
+
+/* .grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+ */

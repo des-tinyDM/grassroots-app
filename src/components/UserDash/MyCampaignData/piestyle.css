@@ -1,7 +1,8 @@
 .container,
 .chart {
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   border: 1px solid black;
   border-radius: 8px;
@@ -12,11 +13,12 @@
 
 .chart {
   position: absolute;
-  top: 50px;
+  /* top: 50px; */
 }
 .title {
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
+  /* position: absolute; */
 }
 .tooltip {
   opactity: 0;
@@ -32,4 +34,9 @@
   border: 1px solid black;
   height: 400px;
   width: 500px;
+}
+.subtitle {
+  /* position: absolute;
+  top: 20px;
+  left: 20px; */
 }

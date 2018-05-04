@@ -37,17 +37,6 @@ class App extends Component {
           <div className="app-content">
             <Switch>
               <Route
-                exact
-                path="/campaigns"
-                render={() =>
-                  this.props.user.authid ? (
-                    <CampaignList />
-                  ) : (
-                    <h1>Login to View Campaigns</h1>
-                  )
-                }
-              />
-              <Route
                 path="/"
                 render={() =>
                   this.props.user.authid ? (
@@ -57,7 +46,16 @@ class App extends Component {
                   )
                 }
               />
-              
+              <Route
+                path="/campaigns"
+                render={() =>
+                  this.props.user.authid ? (
+                    <CampaignList />
+                  ) : (
+                    <h1>Login to View Campaigns</h1>
+                  )
+                }
+              />
             </Switch>
           </div>
         </div>

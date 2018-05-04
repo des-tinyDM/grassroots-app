@@ -32,3 +32,13 @@
   margin-left: 8vw;
   margin-bottom: vh;
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .website-header {
+    width: 100vw;
+    display: flex;
+  }
+  .navs {
+    display: none;
+  }
+}

@@ -1,7 +1,38 @@
 .user-dash {
   height: 90vh;
-  left: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 1vh 5vw;
+  border: 1px solid#2c3754;
+
   /* background: #323f5f; */
-  /* flex-direction:column */
+  /* flex-direction: column; */
   /* box-shadow: 10px 10px 5px grey; */
+}
+
+.news-sidenav {
+  border: 2px solid black;
+  width: 25%;
+  overflow-y: scroll;
+}
+
+.dashboard-component {
+  width: 75%;
+  border: 1px solid #2c3754;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.other-dash {
+  border: 1px solid#2c3754;
+  height: 30vh;
+  margin: 2vh 2vw;
+}
+
+.Data-dash {
+  border: 1px solid#2c3754;
+  height: 40vh;
+  margin: 2vh 2vw;
 }

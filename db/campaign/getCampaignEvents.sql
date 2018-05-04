@@ -1,1 +1,1 @@
-Select event_name as title, * from events where campaign_id = $1;
+Select event_name as title, description as desc, * from events where campaign_id = $1 and start > current_date;

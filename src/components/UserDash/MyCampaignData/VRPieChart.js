@@ -4,7 +4,10 @@ import { withFauxDOM } from "react-faux-dom";
 import { pie, arc } from "d3-shape";
 import "./piestyle.css";
 import { scaleOrdinal } from "d3-scale";
+import moment from "moment";
 var d3 = require("d3");
+
+moment.locale();
 
 class FauxChart extends Component {
   constructor(props) {
@@ -36,13 +39,13 @@ class FauxChart extends Component {
       return acc;
     }, {});
 
-    console.log(`sortedObj`, data);
+    // console.log(`sortedObj`, data);
 
     const sortedList = Object.keys(sortedObj).map(key => {
       return sortedObj[key];
     });
 
-    console.log(`sortedList`, sortedList);
+    // console.log(`sortedList`, sortedList);
 
     let events = [];
     for (let i = 0; i < data.length; i++) {
@@ -51,7 +54,7 @@ class FauxChart extends Component {
         events.push(event);
       }
     }
-    console.log(`events`, events);
+    // console.log(`events`, events);
 
     let eventData = sortedList[this.props.dataIndex];
     // console.log(`eventData`, eventData);
@@ -80,9 +83,15 @@ class FauxChart extends Component {
     svgDoc
       .append("text")
       .classed("title", true)
-      .attr("x", 200)
       .attr("y", 30)
       .text(this.props.title);
+
+    svgDoc
+      .append("text")
+      .classed("subtitle", true)
+      .attr("x", 150)
+      .attr("y", 40)
+      .text(moment(this.props.data[0].start).format("LL"));
 
     svgDoc
       .append("g")
@@ -98,7 +107,7 @@ class FauxChart extends Component {
         else return a.vr - b.vr;
       })(eventData);
 
-    console.log(`arcs`, arcs);
+    // console.log(`arcs`, arcs);
 
     let arc = d3
       .arc()
@@ -120,13 +129,17 @@ class FauxChart extends Component {
           .style("opacity", 1)
           .style("left", d3.event.x + "px")
           .style("top", d3.event.y + "px")
-          .text(`${d.data.first_name} ${d.data.last_name} VR: ${d.data.vr}`);
+          .text(`${d.data.name} VR: ${d.data.vr}`);
       })
       .on("mouseout", function() {
         tooltip.style("opacity", 0);
       })
       //   .attr("stroke", "black")
       .attr("d", arc);
+
+    svgDoc
+      .select(".subtitle")
+      .text(moment(this.props.data[0].start).format("LL"));
 
     this.props.animateFauxDOM(800);
   }
@@ -143,13 +156,13 @@ class FauxChart extends Component {
       return acc;
     }, {});
 
-    console.log(`sortedObj`, data);
+    // console.log(`sortedObj`, data);
 
     const sortedList = Object.keys(sortedObj).map(key => {
       return sortedObj[key];
     });
 
-    console.log(`sortedList`, sortedList);
+    // console.log(`sortedList`, sortedList);
 
     let events = [];
     for (let i = 0; i < data.length; i++) {
@@ -158,7 +171,7 @@ class FauxChart extends Component {
         events.push(event);
       }
     }
-    console.log(`events`, events);
+    // console.log(`events`, events);
 
     let eventData = sortedList[this.props.dataIndex];
     // console.log(`eventData`, eventData);
@@ -187,7 +200,7 @@ class FauxChart extends Component {
         else return a.vr - b.vr;
       })(eventData);
 
-    console.log(`arcs`, arcs);
+    // console.log(`arcs`, arcs);
 
     let arc = d3
       .arc()
@@ -220,12 +233,29 @@ class FauxChart extends Component {
       .on("mouseout", function() {
         tooltip.style("opacity", 0);
       });
+
+    let updateText = d3
+      .select(".chart")
+      .select(".subtitle")
+      .data(eventData);
+
+    updateText.exit().remove();
+
+    updateText
+      .enter()
+      .append("text")
+      .classed("subtitle", true)
+      .attr("x", 150)
+      .attr("y", 40)
+      .text(moment(this.props.data[0].start).format("LL"));
+
     this.props.animateFauxDOM(800);
   }
 
   render() {
-    console.log(this.props);
-    console.log(`chart`, this.props.chart);
+    // console.log(this.props);
+    // console.log(`for title`, this.props.data[0].start);
+    // console.log(`chart`, this.props.chart);
     return <div>{this.props.chart}</div>;
   }
 }

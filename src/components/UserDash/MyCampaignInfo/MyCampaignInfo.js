@@ -8,6 +8,7 @@ import {
 } from "../../../ducks/campaignReducer";
 import { getUser } from "../../../ducks/userReducer";
 import MyCampaignCard from "./MyCampaignCard";
+import CampaignForm from "../NewCampaignForm/CampaignForm";
 
 import "./MyCampaignCard.css";
 import CampaignList from "../../CampaignList/CampaignList";
@@ -28,6 +29,7 @@ class MyCampaignInfo extends Component {
     let { joined } = this.props;
     return (
       <div>
+        {!joined[0] && <CampaignForm />}
         {!joined[0] && <CampaignList user_id={this.props.user.user_id} />}
         {joined[0] &&
           joined.map((e, i) => {

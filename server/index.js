@@ -22,7 +22,8 @@ const {
   scheduleUserAsVol,
   getScheduledEvents,
   getVolunteers,
-  createEvent
+  createEvent,
+  getNews
 } = require(`${__dirname}/controllers/campaignController`);
 const {
   strategy,
@@ -93,7 +94,7 @@ passport.deserializeUser((user, done) => {
 app.get(
   `/auth`,
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/dash",
+    successRedirect: "http://localhost:3000/#/",
     failureRedirect: "http://localhost:3001/auth"
   })
 );
@@ -112,6 +113,7 @@ app.get(`/api/campaigns/:campaign_id/:user_id`, getVolRole);
 app.get(`/api/campaigns/:campaign_id`, getEvents);
 app.get(`/api/events/volunteers/:event_id`, getVolunteers);
 app.get(`/api/camapaigns/events/:user_id`, getScheduledEvents);
+app.get(`/api/news`, getNews);
 
 app.post(`/api/campaign`, createCampaign);
 app.post(`/api/:campaign_id/events`, createEvent);

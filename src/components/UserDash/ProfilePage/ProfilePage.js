@@ -46,123 +46,140 @@ class ProfilePage extends Component {
       : this.setState({ isEditing: true });
   }
   render() {
+    console.log(this.state);
     return (
       <div className="profile">
-        <h1>
+        <h1 className="profile-user-title">
           {this.props.user.first_name} {this.props.user.last_name}
-          <button onClick={this.editingSwitch}>EDIT</button>
         </h1>
-        <form className="profile-body" onSubmit={this.updateProfile}>
-          <img
-            className="profile-img"
-            src={this.props.user.profile_img}
-            alt="A photograph of the user."
-          />
+        {/* <div className="profile-header">
+          
+        </div> */}
 
-          <p>Name:</p>
-          <div className="info-field">
-            <p>First Name:</p>
-            {!this.props.user.first_name || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateFirstName(e.target.value)}
-                className="info"
-                placeholder={this.props.user.first_name}
-              />
-            ) : (
-              this.props.user.first_name
-            )}
-          </div>
-          <div className="info-field">
-            <p>Last Name:</p>
-            {!this.props.user.last_name || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateLastName(e.target.value)}
-                className="info"
-                placeholder={this.props.user.last_name}
-              />
-            ) : (
-              this.props.user.last_name
-            )}
+        <div className="profile-body">
+          <div className="img-container">
+            <img
+              className="profile-img"
+              src={this.props.user.profile_img}
+              alt="A photograph of the user."
+            />
+            <button className="upload-img-btn">Upload image</button>
           </div>
 
-          <p>Address:</p>
-          <div className="info-field">
-            <p>Address:</p>
-            {!this.props.user.address || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateAddress(e.target.value)}
-                className="info"
-                placeholder={this.props.user.address}
-              />
-            ) : (
-              this.props.user.address
-            )}
-          </div>
-          <div className="info-field">
-            <p>City:</p>
-            {!this.props.user.city || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateCity(e.target.value)}
-                className="info"
-                placeholder={this.props.user.city}
-              />
-            ) : (
-              this.props.user.city
-            )}
-          </div>
-          <div className="info-field">
-            <p>State:</p>
-            {!this.props.user.state || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateStateName(e.target.value)}
-                className="info"
-                placeholder={this.props.user.state}
-              />
-            ) : (
-              this.props.user.state
-            )}
-          </div>
-          <div className="info-field">
-            <p>Zip:</p>
-            {!this.props.user.zip || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateZip(e.target.value)}
-                className="info"
-                placeholder={this.props.user.zip}
-              />
-            ) : (
-              this.props.user.zip
-            )}{" "}
-          </div>
+          <form className="form" onSubmit={this.updateProfile}>
+            <input
+              type="button"
+              value="EDIT"
+              className="profile-edit-btn"
+              onClick={this.editingSwitch}
+            />
 
-          <p>Contact</p>
-          <div className="info-field">
-            <p>Phone:</p>
-            {!this.props.user.phone || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updatePhone(e.target.value)}
-                className="info"
-                placeholder={this.props.user.phone}
-              />
-            ) : (
-              this.props.user.phone
-            )}{" "}
-          </div>
-          <div className="info-field">
-            <p>Email:</p>
-            {!this.props.user.email || this.state.isEditing ? (
-              <input
-                onChange={e => this.props.updateEmail(e.target.value)}
-                className="info"
-                placeholder={this.props.user.email}
-              />
-            ) : (
-              this.props.user.email
-            )}
-          </div>
+            <div className="form-body">
+              <div className="form-labels">
+                <p>Name</p>
+                <p>Last Name</p>
+                <p>Address</p>
+                <p>City</p>
+                <p>State</p>
+                <p>Zip</p>
+                <p>Phone</p>
+                <p>Email</p>
+              </div>
+              <div className="user-info">
+                <div className="info-field">
+                  {!this.props.user.first_name || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateFirstName(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.first_name}
+                    />
+                  ) : (
+                    this.props.user.first_name
+                  )}
+                </div>
+                <div className="info-field">
+                  {!this.props.user.last_name || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateLastName(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.last_name}
+                    />
+                  ) : (
+                    this.props.user.last_name
+                  )}
+                </div>
 
-          <input type="submit" />
-        </form>
+                <div className="info-field">
+                  {!this.props.user.address || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateAddress(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.address}
+                    />
+                  ) : (
+                    this.props.user.address
+                  )}
+                </div>
+                <div className="info-field">
+                  {!this.props.user.city || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateCity(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.city}
+                    />
+                  ) : (
+                    this.props.user.city
+                  )}
+                </div>
+                <div className="info-field">
+                  {!this.props.user.state || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateStateName(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.state}
+                    />
+                  ) : (
+                    this.props.user.state
+                  )}
+                </div>
+                <div className="info-field">
+                  {!this.props.user.zip || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateZip(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.zip}
+                    />
+                  ) : (
+                    this.props.user.zip
+                  )}
+                </div>
+                <div className="info-field">
+                  {!this.props.user.phone || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updatePhone(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.phone}
+                    />
+                  ) : (
+                    this.props.user.phone
+                  )}{" "}
+                </div>
+                <div className="info-field">
+                  {!this.props.user.email || this.state.isEditing ? (
+                    <input
+                      onChange={e => this.props.updateEmail(e.target.value)}
+                      className="info"
+                      placeholder={this.props.user.email}
+                    />
+                  ) : (
+                    this.props.user.email
+                  )}
+                </div>
+              </div>
+            </div>
+            <input className="profile-submit-btn" type="submit" />
+          </form>
+        </div>
       </div>
     );
   }

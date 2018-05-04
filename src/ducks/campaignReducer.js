@@ -17,6 +17,7 @@ const SCHEDULE_USER_AS_VOL = "SCHEDULE_USER_AS_VOL";
 const GET_SCHEDULED = "GET_SCHEDULED";
 const GET_VOLS_SCHEDULED = "GET_VOLS_SCHEDULED";
 const CREATE_EVENT = "CREATE_EVENT";
+const GET_NEWS = "GET_NEWS";
 
 const initialState = {
   campaigns: [],
@@ -30,7 +31,8 @@ const initialState = {
   role: "",
   events: [],
   scheduled: [],
-  volsScheduled: []
+  volsScheduled: [],
+  news: []
 };
 
 export function getCampaigns() {
@@ -229,6 +231,18 @@ export function updateCampaignLogo(orglogo) {
   };
 }
 
+export function getNews() {
+  return {
+    type: GET_NEWS,
+    payload: axios
+      .get(`api/news`)
+      .then(response => {
+        return response.data.articles;
+      })
+      .catch(err => console.log(err))
+  };
+}
+
 export default function campaignReducer(state = initialState, action) {
   console.log(action.type, action.payload);
   switch (action.type) {
@@ -237,6 +251,7 @@ export default function campaignReducer(state = initialState, action) {
     case `${GET_EVENTS}_PENDING`:
     case `${GET_VOLS_SCHEDULED}_PENDING`:
     case `${GET_SCHEDULED}_PENDING`:
+    case `${GET_NEWS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_CAMPAIGNS}_FULFILLED`:
       return Object.assign({}, state, {
@@ -248,6 +263,11 @@ export default function campaignReducer(state = initialState, action) {
       return Object.assign({}, state, {
         isLoading: false,
         events: action.payload
+      });
+    case `${GET_NEWS}_FULFILLED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        news: action.payload
       });
     case UPDATE_CAMPAIGN_NAME:
       return Object.assign({}, state, { name: action.payload });

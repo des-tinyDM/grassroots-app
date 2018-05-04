@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { submitNewContact, getCommsData } from "../../../ducks/commsReducer";
 import FauxChart from "./VRPieChart";
 import "./piestyle.css";
+import moment from "moment";
 
 // import VRcommsList from "./data";
 
@@ -128,7 +129,7 @@ class MyCampaignData extends React.Component {
       return sortedObj[key];
     });
 
-    console.log(sortedList);
+    console.log(`sortedList`, sortedList);
 
     let { user_id } = this.props;
     let {
@@ -158,7 +159,7 @@ class MyCampaignData extends React.Component {
 
     return (
       <div className="campaign-data-container">
-        <div>
+        <div className="stats-overview">
           <h3>Stats:</h3>
           <p>VR:</p>
           <p>Commits:</p>
@@ -166,6 +167,7 @@ class MyCampaignData extends React.Component {
         </div>
 
         <h4>Submit Contact Data:</h4>
+
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder="First Name"
@@ -209,6 +211,13 @@ class MyCampaignData extends React.Component {
 
         <div>
           <button onClick={this.changeData}>Change data</button>
+          <select>
+            {sortedList[0] &&
+              sortedList.map((e, i) => {
+                let date = moment(e.start).format("Mo Do, YYYY");
+                return <option value={i}>{date}</option>;
+              })}
+          </select>
           <input
             type="range"
             min="0"

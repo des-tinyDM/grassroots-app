@@ -1,3 +1,5 @@
+var axios = require("axios");
+
 const getCampaigns = (req, res) => {
   const db = req.app.get("db");
   const {
@@ -39,8 +41,12 @@ const createCampaign = (req, res) => {
       user_id
     ])
     .then(response => {
-      // console.log(response);
-      res.status(200).json(response);
+      db.campaign
+        .setCampaignAdmin([response[0].campaign_id, user_id])
+        .then(() => {
+          console.log(response);
+          res.status(200).json(response);
+        });
     })
     .catch(console.log);
 };
@@ -228,11 +234,26 @@ const createEvent = (req, res) => {
       end
     ])
     .then(response => {
-      console.log(response);
+      console.log("pls: ", response);
       res.status(200).json(response);
     })
     .catch(err => {
       console.log(err), res.status(500).json(err);
+    });
+};
+const getNews = (req, res) => {
+  axios
+    .get(`https://newsapi.org/v2/top-headlines?country=us`, {
+      headers: { "X-Api-Key": process.env.NEWS_KEY }
+    })
+    .then(response => {
+      console.log(response);
+      res
+        .status(200)
+        .json(response.data)
+        .catch(err => {
+          console.log(err), res.status(500).send(err);
+        });
     });
 };
 
@@ -246,6 +267,7 @@ module.exports = {
   scheduleUserAsVol,
   getScheduledEvents,
   getVolunteers,
-  createEvent
+  createEvent,
+  getNews
   // updateCampaignInfo
 };

@@ -61,3 +61,16 @@
   max-height: 33vh;
   margin: 1vh 0;
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .desc-container {
+    flex-direction: column;
+    width: 80vw;
+  }
+  .desc-box {
+    width: 80vw;
+  }
+  #landing-btn {
+    width: 250px;
+  }
+}

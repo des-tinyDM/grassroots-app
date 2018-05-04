@@ -53,7 +53,21 @@ const getCommsData = (req, res) => {
     });
 };
 
+getCommsForUser = (req, res) => {
+  const db = req.app.get("db");
+  const { user_id } = req.params;
+
+  db.comms
+    .getCommsForUser([user_id])
+    .then(response => {
+      console.log(response), res.status(200).send(response);
+    })
+    .catch(err => {
+      console.log(err), res.status(500).send(err);
+    });
+};
 module.exports = {
   submitContact,
-  getCommsData
+  getCommsData,
+  getCommsForUser
 };

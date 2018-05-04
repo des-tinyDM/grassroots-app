@@ -7,7 +7,8 @@ import { getUser } from "../../ducks/userReducer";
 import {
   getCampaignsJoined,
   getEvents,
-  getScheduledEvents
+  getScheduledEvents,
+  getNews
 } from "../../ducks/campaignReducer";
 import { getCommsData } from "../../ducks/commsReducer";
 import DashHeader from "./DashHeader";
@@ -17,6 +18,10 @@ import ProfilePage from "./ProfilePage/ProfilePage";
 import MyCampaignData from "./MyCampaignData/MyCampaignData";
 import MyCampaignEvents from "./MyCampaignEvents/MyCampaignEvents";
 import FullEventPage from "./MyCampaignEvents/FullEventPage/FullEventPage";
+import NewsItem from "./NewsItem/NewsItem";
+import Dashboard from "./Dashboard";
+
+import CampaignForm from "./NewCampaignForm/CampaignForm";
 
 class UserDash extends Component {
   constructor(props) {
@@ -29,24 +34,49 @@ class UserDash extends Component {
       .getCampaignsJoined(this.props.user.user_id)
       .then(
         this.props.joined[0]
-          ? () => this.props.getEvents(this.props.joined[0].campaign_id)
+          ? () =>
+              this.props
+                .getEvents(this.props.joined[0].campaign_id)
+                .then(() =>
+                  this.props.getScheduledEvents(this.props.user.user_id)
+                )
           : null
       )
-      .then(() => this.props.getScheduledEvents(this.props.user.user_id))
       .then(
         this.props.joined[0]
           ? () =>
               this.props.getCommsData(this.props.joined[0].campaign_id, "VR")
           : null
-      );
+      )
+      .then(() => {
+        this.props.getNews();
+      });
   }
   render() {
+    console.log(this.props);
+
+    let { news } = this.props;
+    let newsDisplay = news.map((e, i) => {
+      console.log(e);
+      return (
+        <div>
+          <p>Top News for your busy day:</p>
+          <NewsItem
+            key={i}
+            title={e.title}
+            description={e.description}
+            source={e.source.name}
+          />
+        </div>
+      );
+    });
+
     return (
       <div className="user-dash">
-        <div className="dash-content">CONTENT</div>
-
         <Switch>
+          <Route exact path="/" render={Dashboard} />
           <Route
+            exact
             path="/profile"
             render={() =>
               this.props.user.authid ? (
@@ -112,7 +142,22 @@ class UserDash extends Component {
               )
             }
           />
+          {/* <Route
+            path="/"
+            render={() =>
+              this.props.user.authid ? (
+                <FullEventPage
+                  user={this.props.user}
+                  role={this.props.joined.role}
+                  events={this.props.events}
+                />
+              ) : (
+                <h1>Why haven't you joined a campaign? Log in to volunteer!</h1>
+              )
+            }
+          /> */}
         </Switch>
+        <div className="news-sidenav">{newsDisplay}</div>
       </div>
     );
   }
@@ -124,7 +169,8 @@ const mapStateToProps = state => {
     ...state.campaignReducer,
     joined: state.campaignReducer.joined,
     scheduled: state.campaignReducer.scheduled,
-    commsList: state.commsReducer.commsList
+    commsList: state.commsReducer.commsList,
+    news: state.campaignReducer.news
   };
 };
 
@@ -134,6 +180,7 @@ export default withRouter(
     getCampaignsJoined,
     getEvents,
     getScheduledEvents,
-    getCommsData
+    getCommsData,
+    getNews
   })(UserDash)
 );

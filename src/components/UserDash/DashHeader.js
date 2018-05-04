@@ -38,7 +38,13 @@ const DashHeader = props => {
         </div>
         <p className="dash-nav-text">Data</p>
       </Link>
-      <div className="run-over" />
+      <Link className="dash-nav nav-item" to="/mycampaign/data">
+        <div style={{ fontSize: "1.5em", color: "white" }}>
+          <i class="fas fa-users" />
+        </div>
+        <p className="dash-nav-text">Contacts</p>
+      </Link>
+      {/* <div className="run-over" /> */}
       <div className="sign-out-div">
         <a
           href={process.env.REACT_APP_LOGOUT}
@@ -47,9 +53,7 @@ const DashHeader = props => {
           <div style={{ fontSize: "1.5em", color: "white" }}>
             <i class="fas fa-sign-out-alt" />
           </div>
-          <p className="dash-nav-text" id="logout-btn">
-            Logout
-          </p>
+          <p className="dash-nav-text">Logout</p>
         </a>
       </div>
     </nav>
